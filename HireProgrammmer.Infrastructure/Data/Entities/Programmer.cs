@@ -38,8 +38,8 @@ namespace HireProgrammmer.Infrastructure.Data.Entities
         [MaxLength(ShortDescriptionMaxLength)]
         public string ShortDescription { get; set; }
 
-        public ICollection<Language> Languages { get; set; } = new HashSet<Language>();
 
-        public ICollection<Post> Posts { get; set; } = new HashSet<Post>(); //odobren li e 
+
+        public ICollection<Language> Languages { get; set; } = new HashSet<Language>();
     }
 }

@@ -1,25 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using static HireProgrammer.Infrastructure.Data.Constants.ModelConstraints.PostConstants;
 
-
-namespace HireProgrammmer.Infrastructure.Data.Entities
+namespace HireProgrammer.Core.Models.Post
 {
-    public class Post
+    public class PostFormViewModel
     {
-        public Post()
-        {
-            this.IsActive= true;
-        }
-
-        [Key]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required]
         [MaxLength(TitleMaxLength)]
@@ -28,9 +20,6 @@ namespace HireProgrammmer.Infrastructure.Data.Entities
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
-
-        [Required]
-        public DateTime PostedOn { get; set; }
 
         [Required]
         [MaxLength(HiringPositionMaxLength)]
@@ -48,14 +37,6 @@ namespace HireProgrammmer.Infrastructure.Data.Entities
         [Range(typeof(int), WorkingHoursMinValue, WorkingHoursMaxValue)]
         public int WorkingHours { get; set; }
 
-        [Required]
-        public bool IsActive { get; set; }
-
-
-        [Required]
-        [ForeignKey(nameof(User))]
-        public string UserId { get; set; }
-
-        public User User { get; set; }
+        public string? UserId { get; set; }
     }
 }

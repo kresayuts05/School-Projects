@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HireProgrammer.Infrastructure.Migrations
 {
     [DbContext(typeof(HireProgrammerDbContext))]
-    [Migration("20230928200253_seed")]
-    partial class seed
+    [Migration("20231001202347_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -166,9 +166,6 @@ namespace HireProgrammer.Infrastructure.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int?>("FirmId")
-                        .HasColumnType("int");
-
                     b.Property<string>("HiringPosition")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -180,9 +177,6 @@ namespace HireProgrammer.Infrastructure.Migrations
                     b.Property<DateTime>("PostedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ProgrammerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("StartingSalary")
                         .HasColumnType("int");
 
@@ -191,14 +185,16 @@ namespace HireProgrammer.Infrastructure.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("WorkingHours")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FirmId");
-
-                    b.HasIndex("ProgrammerId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -357,7 +353,7 @@ namespace HireProgrammer.Infrastructure.Migrations
                             AccessFailedCount = 0,
                             Address = "Edelvais 6 ",
                             City = "Kazanlak",
-                            ConcurrencyStamp = "9108d27b-acfe-49f0-94de-a834b4749d61",
+                            ConcurrencyStamp = "7a7c7079-5812-42fd-825c-faad08add290",
                             Country = "Bulgaria",
                             Email = "kresa@mail.com",
                             EmailConfirmed = false,
@@ -366,11 +362,11 @@ namespace HireProgrammer.Infrastructure.Migrations
                             Name = "kresa",
                             NormalizedEmail = "KRESA@MAIL.COM",
                             NormalizedUserName = "KRESA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEII3ga6LkrgS3MM1MqscAPQIhQGyUEUGZH07cLsXapqOUfEHQICQThHvssD4vDT2pg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKMtdnD58l2XQ1Ap2FVNeuuGjJyDLi3EqsGJ58hQq+mFh5jv6CgevglTJPEkhEzWsA==",
                             PhoneNumber = "0886121260",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "http://res.cloudinary.com/dmv8nabul/image/upload/v1671315197/images/sayxo7gbosyd1w5xd72r.png",
-                            SecurityStamp = "856af79c-1995-4639-9e37-8e9690db26f4",
+                            SecurityStamp = "2770e836-144c-40b6-812b-42aa07ace90a",
                             TwoFactorEnabled = false,
                             UserName = "kresa"
                         },
@@ -380,7 +376,7 @@ namespace HireProgrammer.Infrastructure.Migrations
                             AccessFailedCount = 0,
                             Address = "Plovdiv 5",
                             City = "Kazanlak",
-                            ConcurrencyStamp = "1dda4304-5a0a-496c-868c-f415e8819f63",
+                            ConcurrencyStamp = "7c1923c6-790f-4fcd-b358-52f039948a9f",
                             Country = "Bulgaria",
                             Email = "vanko@gmail.com",
                             EmailConfirmed = false,
@@ -389,11 +385,11 @@ namespace HireProgrammer.Infrastructure.Migrations
                             Name = "Ivanikus OOD",
                             NormalizedEmail = "VANKO@GMAIL.COM",
                             NormalizedUserName = "IVANIKUS OOD",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKtDD/zZYD/BB8TYo3e/nTXKQeEryF9SeQNtf8LWHGOacJ9B/gxWpoZwLGEuY3IPkg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEwswOJJjI4aHZcyRvfy3at73HoL5C+jpWcfcFzcZvyB/dfoqJPI45QkBBdI7wrfaw==",
                             PhoneNumber = "0888791001",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "http://res.cloudinary.com/dmv8nabul/image/upload/v1671315120/images/tfcjhrtonc17iox0yoel.png",
-                            SecurityStamp = "49a5f50d-1182-40b4-9469-c5aa3f47cbc1",
+                            SecurityStamp = "ac7c9d1d-4edf-4ae6-9698-2c0f4c4ab422",
                             TwoFactorEnabled = false,
                             UserName = "Ivanikus OOD"
                         });
@@ -444,14 +440,14 @@ namespace HireProgrammer.Infrastructure.Migrations
                         new
                         {
                             Id = "25f73449-f9e8-40b4-87ee-93fc6c242339",
-                            ConcurrencyStamp = "2ffb8037-ca11-425b-9e4b-f7bbe5c4cdea",
+                            ConcurrencyStamp = "ed8a2e03-6e06-46ad-bf6c-04eb21ade327",
                             Name = "Programmer",
                             NormalizedName = "PROGRAMMER"
                         },
                         new
                         {
                             Id = "eed2d778-89cf-4c3c-a710-c8d61811f4c7",
-                            ConcurrencyStamp = "346f9290-2e6d-4af7-bfc5-3246873cecd2",
+                            ConcurrencyStamp = "cfc8693d-118b-4393-92f4-9c25d6704246",
                             Name = "Firm",
                             NormalizedName = "FIRM"
                         });
@@ -592,13 +588,13 @@ namespace HireProgrammer.Infrastructure.Migrations
 
             modelBuilder.Entity("HireProgrammmer.Infrastructure.Data.Entities.Post", b =>
                 {
-                    b.HasOne("HireProgrammmer.Infrastructure.Data.Entities.Firm", null)
+                    b.HasOne("HireProgrammmer.Infrastructure.Data.Entities.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("FirmId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("HireProgrammmer.Infrastructure.Data.Entities.Programmer", null)
-                        .WithMany("Posts")
-                        .HasForeignKey("ProgrammerId");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("HireProgrammmer.Infrastructure.Data.Entities.Programmer", b =>
@@ -697,12 +693,7 @@ namespace HireProgrammer.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("HireProgrammmer.Infrastructure.Data.Entities.Firm", b =>
-                {
-                    b.Navigation("Posts");
-                });
-
-            modelBuilder.Entity("HireProgrammmer.Infrastructure.Data.Entities.Programmer", b =>
+            modelBuilder.Entity("HireProgrammmer.Infrastructure.Data.Entities.User", b =>
                 {
                     b.Navigation("Posts");
                 });

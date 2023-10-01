@@ -35,6 +35,8 @@ namespace HireProgrammmer.Infrastructure.Data.Entities
 
         public string? ProfilePictureUrl { get; set; }
 
+        public ICollection<Post>? Posts { get; set; } = new HashSet<Post>();
+
         public bool IsActive { get; set; }
     }
 }

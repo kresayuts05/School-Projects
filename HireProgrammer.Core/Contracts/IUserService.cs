@@ -1,4 +1,5 @@
-﻿using HireProgrammer.Core.Models.User;
+﻿using HireProgrammer.Core.Models.Post;
+using HireProgrammer.Core.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace HireProgrammer.Core.Contracts
         Task<UserModel> GetUserById(string userId);
 
         Task<bool> UserByEmailExists(string email);
+
+        
     }
 }

@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProgrammerService, ProgrammerService>();
             services.AddScoped<IFirmService, FirmService>();
+            services.AddScoped<IPostService, PostService>();
 
             return services;
         }

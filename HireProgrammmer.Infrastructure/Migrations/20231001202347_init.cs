@@ -195,6 +195,33 @@ namespace HireProgrammer.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Posts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    PostedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HiringPosition = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Benefits = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    StartingSalary = table.Column<int>(type: "int", nullable: false),
+                    WorkingHours = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Posts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Posts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Programmers",
                 columns: table => new
                 {
@@ -241,38 +268,6 @@ namespace HireProgrammer.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Posts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    PostedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HiringPosition = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Benefits = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    StartingSalary = table.Column<int>(type: "int", nullable: false),
-                    WorkingHours = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    FirmId = table.Column<int>(type: "int", nullable: true),
-                    ProgrammerId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Posts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Posts_Firms_FirmId",
-                        column: x => x.FirmId,
-                        principalTable: "Firms",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Posts_Programmers_ProgrammerId",
-                        column: x => x.ProgrammerId,
-                        principalTable: "Programmers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ProgrammersLanguages",
                 columns: table => new
                 {
@@ -295,6 +290,62 @@ namespace HireProgrammer.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "25f73449-f9e8-40b4-87ee-93fc6c242339", "ed8a2e03-6e06-46ad-bf6c-04eb21ade327", "Programmer", "PROGRAMMER" },
+                    { "eed2d778-89cf-4c3c-a710-c8d61811f4c7", "cfc8693d-118b-4393-92f4-9c25d6704246", "Firm", "FIRM" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Address", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "IsActive", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "7125d323-7567-4f56-b27e-6b7044014a37", 0, "Plovdiv 5", "Kazanlak", "7c1923c6-790f-4fcd-b358-52f039948a9f", "Bulgaria", "vanko@gmail.com", false, true, false, null, "Ivanikus OOD", "VANKO@GMAIL.COM", "IVANIKUS OOD", "AQAAAAEAACcQAAAAEEwswOJJjI4aHZcyRvfy3at73HoL5C+jpWcfcFzcZvyB/dfoqJPI45QkBBdI7wrfaw==", "0888791001", false, "http://res.cloudinary.com/dmv8nabul/image/upload/v1671315120/images/tfcjhrtonc17iox0yoel.png", "ac7c9d1d-4edf-4ae6-9698-2c0f4c4ab422", false, "Ivanikus OOD" },
+                    { "ae724eb3-355b-48dd-bdaa-c1eaccf666c5", 0, "Edelvais 6 ", "Kazanlak", "7a7c7079-5812-42fd-825c-faad08add290", "Bulgaria", "kresa@mail.com", false, true, false, null, "kresa", "KRESA@MAIL.COM", "KRESA", "AQAAAAEAACcQAAAAEKMtdnD58l2XQ1Ap2FVNeuuGjJyDLi3EqsGJ58hQq+mFh5jv6CgevglTJPEkhEzWsA==", "0886121260", false, "http://res.cloudinary.com/dmv8nabul/image/upload/v1671315197/images/sayxo7gbosyd1w5xd72r.png", "2770e836-144c-40b6-812b-42aa07ace90a", false, "kresa" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Languages",
+                columns: new[] { "Id", "IsFunctionalLanguage", "Name" },
+                values: new object[,]
+                {
+                    { 1, false, "C#" },
+                    { 2, false, "C" },
+                    { 3, false, "C++" },
+                    { 4, false, "HTML 5" },
+                    { 5, false, "CSS 3" },
+                    { 6, false, "Java" },
+                    { 7, false, "Java Script" },
+                    { 8, false, "Python" },
+                    { 9, false, "PHP" },
+                    { 10, false, "Larvel" },
+                    { 11, false, "SQL" },
+                    { 12, true, "Haskel" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "eed2d778-89cf-4c3c-a710-c8d61811f4c7", "7125d323-7567-4f56-b27e-6b7044014a37" },
+                    { "25f73449-f9e8-40b4-87ee-93fc6c242339", "ae724eb3-355b-48dd-bdaa-c1eaccf666c5" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Firms",
+                columns: new[] { "Id", "IsActive", "UserId" },
+                values: new object[] { 1, true, "7125d323-7567-4f56-b27e-6b7044014a37" });
+
+            migrationBuilder.InsertData(
+                table: "Programmers",
+                columns: new[] { "Id", "Experience", "IsActive", "ShortDescription", "UserId" },
+                values: new object[] { 1, 5, true, "I have been a programmer since 2020 and I had worked in several companies - David Holding, Ferrari Technologies. I am very hard-working, passionate and goal-orientated", "ae724eb3-355b-48dd-bdaa-c1eaccf666c5" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -346,14 +397,9 @@ namespace HireProgrammer.Infrastructure.Migrations
                 column: "ProgrammersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_FirmId",
+                name: "IX_Posts_UserId",
                 table: "Posts",
-                column: "FirmId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Posts_ProgrammerId",
-                table: "Posts",
-                column: "ProgrammerId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Programmers_UserId",
@@ -384,6 +430,9 @@ namespace HireProgrammer.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Firms");
+
+            migrationBuilder.DropTable(
                 name: "LanguageProgrammer");
 
             migrationBuilder.DropTable(
@@ -394,9 +443,6 @@ namespace HireProgrammer.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Firms");
 
             migrationBuilder.DropTable(
                 name: "Languages");

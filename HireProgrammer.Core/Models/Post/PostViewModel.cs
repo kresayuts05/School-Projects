@@ -21,5 +21,7 @@ namespace HireProgrammer.Core.Models.Post
         public int StartingSalary { get; set; }
 
         public int WorkingHours { get; set; }
+
+        public string UserId { get; set; }
     }
 }

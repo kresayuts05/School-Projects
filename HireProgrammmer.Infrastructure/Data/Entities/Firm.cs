@@ -26,8 +26,6 @@ namespace HireProgrammmer.Infrastructure.Data.Entities
 
         public User User { get; set; }
 
-        public ICollection<Post> Posts { get; set; } = new HashSet<Post>();
-
         [DefaultValue(true)]
         public bool IsActive { get; set; }
     }

@@ -9,5 +9,7 @@ namespace HireProgrammer.Core.Exceptions
     public static class GlobalExceptions
     {
         public const string UserDoesNotExistExceptionMessage = "User does not exist!";
+        public const string PostsDoNotExist = "No posts yet!";
+        public const string PostDoesNotExistExceptionMessage = "No such post!";
     }
 }
