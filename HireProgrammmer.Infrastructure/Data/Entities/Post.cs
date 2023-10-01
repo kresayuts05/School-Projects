@@ -29,7 +29,7 @@ namespace HireProgrammmer.Infrastructure.Data.Entities
         public string Description { get; set; }
 
         [Required]
-        public DateOnly PostedOn { get; set; }
+        public DateTime PostedOn { get; set; }
 
         [Required]
         [MaxLength(HiringPositionMaxLength)]

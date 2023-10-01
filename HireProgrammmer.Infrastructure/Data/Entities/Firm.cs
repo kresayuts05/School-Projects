@@ -21,10 +21,6 @@ namespace HireProgrammmer.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(NameMaxLength)]
-        public string Name { get; set; }
-
-        [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 

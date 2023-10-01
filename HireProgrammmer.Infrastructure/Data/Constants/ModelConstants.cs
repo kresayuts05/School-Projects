@@ -10,11 +10,8 @@ namespace HireProgrammer.Infrastructure.Data.Constants
     {
         public static class UserConstants
         {
-            public const int FirstNameMaxLength = 50;
-            public const int FirstNameMinLength = 2;
-
-            public const int LastNameMaxLength = 50;
-            public const int LastNameMinLength = 2;
+            public const int NameMaxLength = 100;
+            public const int NameMinLength = 2;
 
             public const int AddressMaxLength = 100;
             public const int AddressMinLength = 5;
@@ -31,16 +28,13 @@ namespace HireProgrammer.Infrastructure.Data.Constants
 
         public static class FirmConstants
         {
-            public const int NameMaxLength = 50;
-            public const int NameMinLength = 2;
-
             public const int SalaryMaxValue = 50;
             public const int SalaryMinValue = 2;
         }
 
         public static class ProgrammerConstants
         {
-            public const int ShortDescriptionMaxLength = 150;
+            public const int ShortDescriptionMaxLength = 1000;
             public const int ShortDescriptionMinLength = 5;
         }
 

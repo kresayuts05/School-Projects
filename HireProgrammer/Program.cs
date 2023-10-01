@@ -1,9 +1,9 @@
-using HireProgrammer.Data;
 using HireProgrammer.Infrastructure.Data;
 using HireProgrammmer.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Principal;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +30,10 @@ builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
 });
+
+builder.Services.AddApplicationServices();
+
+builder.Services.AddResponseCaching();
 
 var app = builder.Build();
 

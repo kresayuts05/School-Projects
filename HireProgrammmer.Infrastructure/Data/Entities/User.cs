@@ -18,6 +18,10 @@ namespace HireProgrammmer.Infrastructure.Data.Entities
         }
 
         [Required]
+        [MaxLength(NameMaxLength)]
+        public string Name { get; set; }
+
+        [Required]
         [MaxLength(AddressMaxLength)]
         public string Address { get; set; }
 

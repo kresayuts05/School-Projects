@@ -1,0 +1,36 @@
+﻿@model LoginViewModel
+@{
+}
+
+
+<div class="form_wrapper">
+    <div class="form_container">
+        <div class="title_container">
+            <h2>Registration Form For Firm</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="">
+                <form method="post">
+                    <div class="row clearfix">
+                        <div class="input_field">
+                            <span asp-validation-for="Email"></span>
+                            <input type="email" name="email" placeholder="Email" required />
+                        </div>
+                        <div class="input_field">
+                            <span asp-validation-for="Password"></span>
+                            <input type="password" name="password" placeholder="Password" required />
+                        </div>
+                    </div>
+                    <br>
+                    <input class="button" type="submit" value="Login" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <a asp-controller="Account" asp-action="RegisterAsProgrammer" class="credit">I am not registrated. Click <b>here</b></a>
+    <br>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
